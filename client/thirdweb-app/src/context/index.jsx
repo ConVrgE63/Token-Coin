@@ -1,6 +1,6 @@
 import React, { useContext, createContext } from 'react';
 
-import { useConnect,useAddress, useContract, metamaskWallet, useContractWrite } from '@thirdweb-dev/react';
+import { useAddress, useContract, useMetamask, useContractWrite } from '@thirdweb-dev/react';
 import { ethers } from 'ethers';
 import { EditionMetadataWithOwnerOutputSchema } from '@thirdweb-dev/sdk';
 
@@ -11,9 +11,7 @@ export const StateContextProvider = ({ children }) => {
   const { mutateAsync: createCampaign } = useContractWrite(contract, 'createCampaign');
 
   const address = useAddress();
-  const connect = useConnect({
-    wallet: metamaskWallet(),
-  });
+  const connect = useMetamask();
 
   const publishCampaign = async (form) => {
     try {
